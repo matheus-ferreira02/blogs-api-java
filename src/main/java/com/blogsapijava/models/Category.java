@@ -10,18 +10,13 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "Users")
-public class User {
+@Table(name = "Categories")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(length = 50, nullable = false)
-    private String displayName, password;
-
-    @Column(length = 200, unique = true, nullable = false)
-    private String email;
-
-    private String image;
+    private String name;
 }
