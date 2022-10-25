@@ -6,7 +6,7 @@ import com.blogsapijava.models.User;
 import java.util.List;
 
 public interface IUserService {
-    User findById(long id) throws Exception;
+    User findById(long id);
     User create(UserRequestDTO user);
     List<User> findAll();
     void update(User user, long id);

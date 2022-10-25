@@ -1,28 +1,27 @@
 package com.blogsapijava.services;
 
 import com.blogsapijava.dtos.UserRequestDTO;
+import com.blogsapijava.exceptions.NotFoundException;
 import com.blogsapijava.interfaces.IUserService;
 import com.blogsapijava.models.User;
 import com.blogsapijava.repositories.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@RequiredArgsConstructor
 public class UserService implements IUserService {
 
-    @Autowired
-    private UserRepo repo;
+    private final UserRepo repo;
 
     @Override
-    public User findById(long id) throws Exception {
+    public User findById(long id) {
         Optional<User> user = repo.findById(id);
 
-        if (user.isPresent()) {
-            return user.get();
-        }
-
-        throw new Exception("Inexistente");
+        return user.orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Override
