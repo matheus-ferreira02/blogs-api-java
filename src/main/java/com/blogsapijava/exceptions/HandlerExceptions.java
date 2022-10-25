@@ -18,6 +18,15 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class HandlerExceptions extends ResponseEntityExceptionHandler {
 
+    private List<FieldMessage> mountFieldErrorMessages(List<FieldError> errors) {
+        return errors.stream()
+                .map(error -> FieldMessage.builder()
+                            .field(error.getField())
+                            .message(error.getDefaultMessage())
+                            .build()
+                ).collect(Collectors.toList());
+    }
+
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ExceptionDetails> handlerNotFoundException(NotFoundException ex) {
         ExceptionDetails details = ExceptionDetails.builder()
@@ -49,17 +58,11 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
             HttpStatus status,
             WebRequest request) {
         List<FieldError> errors = ex.getBindingResult().getFieldErrors();
-        List<FieldMessage> fieldMessageList = errors.stream()
-                .map(error -> {
-                    FieldMessage fieldMessage = FieldMessage.builder().field(error.getField()).build();
-                    fieldMessage.setMessage(error.getDefaultMessage());
-                    return fieldMessage;
-                }).collect(Collectors.toList());
 
         ExceptionDetails details = ExceptionDetails.builder()
                 .title("Invalid values")
                 .message("Some values are invalid")
-                .fields(fieldMessageList)
+                .fields(this.mountFieldErrorMessages(errors))
                 .timestamps(LocalDateTime.now())
                 .status(status.value())
                 .build();
