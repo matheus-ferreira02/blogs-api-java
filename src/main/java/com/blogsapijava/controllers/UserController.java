@@ -1,13 +1,14 @@
 package com.blogsapijava.controllers;
 
+import com.blogsapijava.dtos.UserRequestDTO;
 import com.blogsapijava.models.User;
 import com.blogsapijava.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
@@ -21,5 +22,13 @@ public class UserController {
         User user = service.findById(id);
 
         return ResponseEntity.ok(user);
+    }
+
+    // TODO: usar o URI ao criar um usuario
+    @PostMapping
+    public ResponseEntity<User> create(@RequestBody @Valid UserRequestDTO userDTO) {
+        User createdUser = service.create(userDTO);
+
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 }

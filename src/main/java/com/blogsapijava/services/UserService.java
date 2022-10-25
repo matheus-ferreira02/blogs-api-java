@@ -24,11 +24,12 @@ public class UserService implements IUserService {
         return user.orElseThrow(() -> new NotFoundException("User not found"));
     }
 
+    // TODO: verificar se o email ja existe antes de criar
     @Override
     public User create(UserRequestDTO userDTO) {
         User user = new User();
         user.setEmail(userDTO.getEmail());
-        user.setDisplayName(userDTO.getDisplaName());
+        user.setDisplayName(userDTO.getDisplayName());
         user.setPassword(userDTO.getPassword());
         user.setImage(userDTO.getImage());
 

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,5 +14,6 @@ import java.time.LocalDateTime;
 public class ExceptionDetails {
     private String title, message;
     private int status;
+    private List<FieldMessage> fields;
     private LocalDateTime timestamps;
 }
