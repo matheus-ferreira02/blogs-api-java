@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,4 +20,7 @@ public class Category {
 
     @Column(length = 50, nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
+    private Set<BlogPost> blogPosts;
 }

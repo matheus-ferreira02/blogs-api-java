@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,4 +33,12 @@ public class BlogPost {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+
+    @ManyToMany
+    @JoinTable(
+            name = "PostCategories",
+            joinColumns = @JoinColumn(name = "blogPostId", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
+    )
+    private Set<Category> categories;
 }
