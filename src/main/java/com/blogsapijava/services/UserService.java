@@ -25,8 +25,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User create(UserRequestDTO user) {
-        return null;
+    public User create(UserRequestDTO userDTO) {
+        User user = new User();
+        user.setEmail(userDTO.getEmail());
+        user.setDisplayName(userDTO.getDisplaName());
+        user.setPassword(userDTO.getPassword());
+        user.setImage(userDTO.getImage());
+
+        return repo.save(user);
     }
 
     @Override
