@@ -24,11 +24,12 @@ public class BlogPost {
     private String content;
 
     @Column
-    private long userId;
-
-    @Column
     private LocalDateTime published;
 
     @Column
     private LocalDateTime updated;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
 }
