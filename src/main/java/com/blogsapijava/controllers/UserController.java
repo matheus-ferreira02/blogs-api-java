@@ -1,6 +1,7 @@
 package com.blogsapijava.controllers;
 
 import com.blogsapijava.dtos.UserRequestDTO;
+import com.blogsapijava.dtos.UserUpdateDTO;
 import com.blogsapijava.interfaces.IUserService;
 import com.blogsapijava.models.User;
 import lombok.RequiredArgsConstructor;
@@ -41,8 +42,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable long id, @RequestBody User user) {
-        service.update(user, id);
+    public ResponseEntity<Void> update(@PathVariable long id, @Valid @RequestBody UserUpdateDTO dataUserUpdate) {
+        service.update(dataUserUpdate, id);
 
         return ResponseEntity.noContent().build();
     }

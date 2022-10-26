@@ -1,6 +1,7 @@
 package com.blogsapijava.services;
 
 import com.blogsapijava.dtos.UserRequestDTO;
+import com.blogsapijava.dtos.UserUpdateDTO;
 import com.blogsapijava.exceptions.NotFoundException;
 import com.blogsapijava.interfaces.IUserService;
 import com.blogsapijava.models.User;
@@ -42,9 +43,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void update(User user, long id) {
-        // if(user == null) throw new NotFoundException("Body inválido");
-        user.setId(id);
+    public void update(UserUpdateDTO dataUserUpdate, long id) {
+        User user = this.findById(id);
+        // primeira abordagem, pegar cada valor do DTO, verificar se existe e atualizar, setando cada valor, mas caso existe 50 atributos, ficaria enorme
+        // ou poderia criar uma rota para att cada atributo
+        if (dataUserUpdate.getDisplayName() != null) user.setDisplayName(dataUserUpdate.getDisplayName());
+        if (dataUserUpdate.getImage() != null) user.setImage(dataUserUpdate.getImage());
+        if (dataUserUpdate.getPassword() != null) user.setPassword(dataUserUpdate.getPassword());
+        // outra forma, simplesmente setar o novo valor, e deixar que a própria model verifique isso
+        user.setEmail(dataUserUpdate.getEmail());
 
         repo.save(user);
     }

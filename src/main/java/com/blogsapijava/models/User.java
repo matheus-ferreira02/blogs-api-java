@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -29,4 +30,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<BlogPost> blogPosts;
+
+    // verificando se o valor setado não é nulo
+    public void setEmail(String email) {
+        if (email != null) this.email = email;
+    }
 }
