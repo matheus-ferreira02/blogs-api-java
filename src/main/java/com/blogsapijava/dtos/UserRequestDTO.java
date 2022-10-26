@@ -12,15 +12,17 @@ import javax.validation.constraints.*;
 @Setter
 @NoArgsConstructor
 public class UserRequestDTO {
-    @NotBlank(message = "Field is required and cannot be empty")
-    @Size(min = 3, max = 50, message = "Field must be 3 to 50 characters long")
+    // @NotBlank(message = "Field is required and cannot be empty")
+    // @Size(min = 3, max = 50, message = "Field must be 3 to 50 characters long")
+    @NotBlank
+    @Size
     private String displayName, password;
 
-    @NotBlank(message = "Field is required and cannot be empty")
-    @Size(max = 200, message = "Maximum length 0f 200 characters reached")
-    @Email(message = "Email is not valid")
+    @NotBlank
+    @Size
+    @Email
     private String email;
 
-    @Size(max = 255, message = "Maximum length 0f 255 characters reached")
+    @Size
     private String image;
 }

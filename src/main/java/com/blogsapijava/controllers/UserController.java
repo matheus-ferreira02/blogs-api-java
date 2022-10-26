@@ -1,8 +1,8 @@
 package com.blogsapijava.controllers;
 
 import com.blogsapijava.dtos.UserRequestDTO;
+import com.blogsapijava.interfaces.IUserService;
 import com.blogsapijava.models.User;
-import com.blogsapijava.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService service;
+    private final IUserService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable long id) {
