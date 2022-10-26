@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -22,6 +23,13 @@ public class UserController {
         User user = service.findById(id);
 
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> findAll() {
+        List<User> users = service.findAll();
+
+        return ResponseEntity.ok(users);
     }
 
     // TODO: usar o URI ao criar um usuario
