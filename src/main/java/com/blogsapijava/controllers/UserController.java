@@ -39,4 +39,11 @@ public class UserController {
 
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable long id, @RequestBody User user) {
+        service.update(user, id);
+
+        return ResponseEntity.noContent().build();
+    }
 }

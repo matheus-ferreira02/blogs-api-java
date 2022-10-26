@@ -43,7 +43,10 @@ public class UserService implements IUserService {
 
     @Override
     public void update(User user, long id) {
+        // if(user == null) throw new NotFoundException("Body inválido");
+        user.setId(id);
 
+        repo.save(user);
     }
 
     @Override
