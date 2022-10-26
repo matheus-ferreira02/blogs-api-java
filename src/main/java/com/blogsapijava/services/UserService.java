@@ -58,6 +58,8 @@ public class UserService implements IUserService {
 
     @Override
     public void delete(long id) {
+        this.findById(id);
 
+        repo.deleteById(id);
     }
 }
