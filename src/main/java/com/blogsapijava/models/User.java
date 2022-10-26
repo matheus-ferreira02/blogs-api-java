@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -17,7 +18,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(length = 50, nullable = false)
     private String displayName, password;
@@ -29,4 +30,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<BlogPost> blogPosts;
+
+    // verificando se o valor setado não é nulo
+    public void setEmail(String email) {
+        if (email != null) this.email = email;
+    }
 }
