@@ -72,8 +72,8 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
     }
 
     // nao usar esse handler para mostrar minha duvida
-    @ExceptionHandler(EmailExistsException.class)
-    public ResponseEntity<ExceptionDetails> handlerEmailExistsException(EmailExistsException ex) {
+    @ExceptionHandler(FieldExistsException.class)
+    public ResponseEntity<ExceptionDetails> handlerEmailExistsException(FieldExistsException ex) {
         ExceptionDetails details = ExceptionDetails.builder()
                 .title("Bad request")
                 .message(ex.getMessage())
