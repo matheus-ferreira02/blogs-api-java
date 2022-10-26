@@ -12,6 +12,10 @@ public enum ValidationsMessages {
         this.message = message;
     }
 
+    public String value() {
+        return this.message;
+    }
+
     @Override
     public String toString() {
         return this.message;

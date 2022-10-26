@@ -1,5 +1,6 @@
 package com.blogsapijava.services;
 
+import com.blogsapijava.dtos.CategoryRequestDTO;
 import com.blogsapijava.exceptions.FieldExistsException;
 import com.blogsapijava.exceptions.NotFoundException;
 import com.blogsapijava.interfaces.ICategoryService;
@@ -30,8 +31,11 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public Category create(Category category) {
+    public Category create(CategoryRequestDTO categoryDTO) {
         this.verifyExistingCategory(category.getName());
+
+        Category category = new Category();
+        category.setName(categoryDTO.getName());
 
         return repo.save(category);
     }
