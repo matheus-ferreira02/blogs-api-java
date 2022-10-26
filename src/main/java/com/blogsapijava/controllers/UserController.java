@@ -1,6 +1,7 @@
 package com.blogsapijava.controllers;
 
 import com.blogsapijava.dtos.UserRequestDTO;
+import com.blogsapijava.dtos.UserResponseDTO;
 import com.blogsapijava.dtos.UserUpdateDTO;
 import com.blogsapijava.interfaces.IUserService;
 import com.blogsapijava.models.User;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 @RestController
@@ -19,9 +21,17 @@ public class UserController {
 
     private final IUserService service;
 
+    // como pegar dados basicos
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable long id) {
         User user = service.findById(id);
+
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> findById(@PathVariable String email) {
+        User user = service.findByEmail(email);
 
         return ResponseEntity.ok(user);
     }

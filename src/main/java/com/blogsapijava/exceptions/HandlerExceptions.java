@@ -71,15 +71,17 @@ public class HandlerExceptions extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(details, status);
     }
 
-    /* @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ExceptionDetails> handlerHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+    // nao usar esse handler para mostrar minha duvida
+    @ExceptionHandler(EmailExistsException.class)
+    public ResponseEntity<ExceptionDetails> handlerEmailExistsException(EmailExistsException ex) {
         ExceptionDetails details = ExceptionDetails.builder()
-                .title("Invalid values")
+                .title("Bad request")
                 .message(ex.getMessage())
                 .timestamps(LocalDateTime.now())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .build();
 
         return new ResponseEntity<>(details, HttpStatus.BAD_REQUEST);
-    }*/
+    }
+
 }
