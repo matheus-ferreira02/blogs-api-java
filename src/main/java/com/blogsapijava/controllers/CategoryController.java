@@ -1,4 +1,4 @@
-package com.blogsapijava.dtos.controllers;
+package com.blogsapijava.controllers;
 
 import com.blogsapijava.dtos.CategoryRequestDTO;
 import com.blogsapijava.interfaces.ICategoryService;

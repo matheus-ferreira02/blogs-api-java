@@ -1,4 +1,4 @@
-package com.blogsapijava.dtos.controllers;
+package com.blogsapijava.controllers;
 
 import com.blogsapijava.dtos.UserRequestDTO;
 import com.blogsapijava.dtos.UserResponseDTO;
