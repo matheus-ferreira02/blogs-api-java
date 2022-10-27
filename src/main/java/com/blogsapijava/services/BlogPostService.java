@@ -7,7 +7,6 @@ import com.blogsapijava.models.BlogPost;
 import com.blogsapijava.models.User;
 import com.blogsapijava.repositories.BlogPostRepo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
