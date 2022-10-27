@@ -44,7 +44,7 @@ public class BlogPostService implements IBlogPostService {
 
     @Override
     public List<BlogPost> findAll() {
-        return null;
+        return repo.findAll();
     }
 
     @Override

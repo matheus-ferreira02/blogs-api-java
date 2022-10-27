@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/blogPost")
@@ -22,6 +23,13 @@ public class BlogPostController {
         BlogPost post = service.findById(id);
 
         return ResponseEntity.ok(post);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<BlogPost>> findAll() {
+        List<BlogPost> blogPosts = service.findAll();
+
+        return ResponseEntity.ok(blogPosts);
     }
 
     @PostMapping
