@@ -1,5 +1,6 @@
 package com.blogsapijava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,6 +30,7 @@ public class User {
     private String image;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
     private Set<BlogPost> blogPosts;
 
     // verificando se o valor setado não é nulo

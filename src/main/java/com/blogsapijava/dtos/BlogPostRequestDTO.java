@@ -3,8 +3,7 @@ package com.blogsapijava.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter @Setter
 public class BlogPostRequestDTO {
@@ -14,6 +13,7 @@ public class BlogPostRequestDTO {
     @Size(min = 10, max = 255)
     private String content;
 
-    @NotBlank
+    @NotNull
+    @Min(0)
     private long userId;
 }
