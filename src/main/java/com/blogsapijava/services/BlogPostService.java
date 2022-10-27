@@ -16,6 +16,7 @@ import java.util.Optional;
 public class BlogPostService implements IBlogPostService {
 
     private final BlogPostRepo repo;
+    private final UserService userService;
 
     @Override
     public BlogPost findById(long id) {
@@ -26,7 +27,13 @@ public class BlogPostService implements IBlogPostService {
 
     @Override
     public BlogPost create(BlogPostRequestDTO post) {
-        return null;
+        userService.findById(post.getUserId());
+
+        BlogPost newPost = new BlogPost();
+        newPost.setContent(post.getContent());
+        newPost.setTitle(post.getTitle());
+
+        return repo.save(newPost);
     }
 
     @Override
