@@ -39,4 +39,11 @@ public class BlogPostController {
         return new ResponseEntity<>(newPost, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        service.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

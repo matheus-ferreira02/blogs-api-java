@@ -54,6 +54,8 @@ public class BlogPostService implements IBlogPostService {
 
     @Override
     public void delete(long id) {
+        this.findById(id);
 
+        repo.deleteById(id);
     }
 }
