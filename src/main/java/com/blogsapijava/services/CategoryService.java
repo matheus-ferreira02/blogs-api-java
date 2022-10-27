@@ -7,10 +7,12 @@ import com.blogsapijava.interfaces.ICategoryService;
 import com.blogsapijava.models.Category;
 import com.blogsapijava.repositories.CategoryRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class CategoryService implements ICategoryService {
 
@@ -32,7 +34,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Category create(CategoryRequestDTO categoryDTO) {
-        this.verifyExistingCategory(category.getName());
+        this.verifyExistingCategory(categoryDTO.getName());
 
         Category category = new Category();
         category.setName(categoryDTO.getName());

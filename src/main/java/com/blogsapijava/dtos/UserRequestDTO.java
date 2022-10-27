@@ -1,8 +1,5 @@
 package com.blogsapijava.dtos;
 
-import com.blogsapijava.controllers.EnumTest;
-import com.blogsapijava.enums.ValidationsMessages;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
