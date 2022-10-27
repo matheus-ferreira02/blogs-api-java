@@ -1,7 +1,5 @@
 package com.blogsapijava.dtos;
 
-import com.blogsapijava.enums.ValidationsMessages;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +10,7 @@ import javax.validation.constraints.*;
 @Setter
 @NoArgsConstructor
 public class UserRequestDTO {
-    // @NotBlank(message = "Field is required and cannot be empty")
+    // @NotBlank(message = EnumTest.REQUIRED.getMessage())
     // @Size(min = 3, max = 50, message = "Field must be 3 to 50 characters long")
     @NotBlank
     @Size(min = 3, max = 50)

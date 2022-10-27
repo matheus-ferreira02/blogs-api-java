@@ -3,7 +3,7 @@ package com.blogsapijava.services;
 import com.blogsapijava.dtos.UserRequestDTO;
 import com.blogsapijava.dtos.UserResponseDTO;
 import com.blogsapijava.dtos.UserUpdateDTO;
-import com.blogsapijava.exceptions.EmailExistsException;
+import com.blogsapijava.exceptions.FieldExistsException;
 import com.blogsapijava.exceptions.NotFoundException;
 import com.blogsapijava.interfaces.IUserService;
 import com.blogsapijava.models.User;
@@ -83,6 +83,6 @@ public class UserService implements IUserService {
     private void verifyExistingEmail(String email) {
         Optional<User> user = repo.findByEmail(email);
 
-        if (user.isPresent()) throw new EmailExistsException("Email is already in use");
+        if (user.isPresent()) throw new FieldExistsException("Email is already in use");
     }
 }
