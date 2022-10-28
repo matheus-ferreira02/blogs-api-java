@@ -1,5 +1,6 @@
 package com.blogsapijava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Category {
     private String name;
 
     @ManyToMany(mappedBy = "categories")
+    @JsonIgnoreProperties("categories")
     private Set<BlogPost> blogPosts;
 }

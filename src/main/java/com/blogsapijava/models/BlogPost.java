@@ -1,5 +1,6 @@
 package com.blogsapijava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,10 +32,12 @@ public class BlogPost {
     private LocalDateTime updated;
 
     @ManyToOne
+    @JsonIgnoreProperties("blogPosts")
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
     @ManyToMany
+    @JsonIgnoreProperties("blogPosts")
     @JoinTable(
             name = "PostCategories",
             joinColumns = @JoinColumn(name = "blogPostId", referencedColumnName = "id"),
