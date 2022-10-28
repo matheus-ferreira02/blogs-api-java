@@ -1,6 +1,7 @@
 package com.blogsapijava.services;
 
 import com.blogsapijava.dtos.BlogPostRequestDTO;
+import com.blogsapijava.dtos.BlogPostUpdateDTO;
 import com.blogsapijava.exceptions.NotFoundException;
 import com.blogsapijava.interfaces.IBlogPostService;
 import com.blogsapijava.models.BlogPost;
@@ -54,8 +55,14 @@ public class BlogPostService implements IBlogPostService {
     }
 
     @Override
-    public void update(BlogPost post) {
+    public void update(BlogPostUpdateDTO dataPostUpdate, long id) {
+        BlogPost post = this.findById(id);
 
+        if (dataPostUpdate.getTitle() != null) post.setTitle(dataPostUpdate.getTitle());
+        if (dataPostUpdate.getContent() != null) post.setContent(dataPostUpdate.getContent());
+        post.setUpdated(LocalDateTime.now());
+
+        repo.save(post);
     }
 
     @Override

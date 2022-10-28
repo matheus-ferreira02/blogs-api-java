@@ -1,6 +1,7 @@
 package com.blogsapijava.controllers;
 
 import com.blogsapijava.dtos.BlogPostRequestDTO;
+import com.blogsapijava.dtos.BlogPostUpdateDTO;
 import com.blogsapijava.interfaces.IBlogPostService;
 import com.blogsapijava.models.BlogPost;
 import lombok.RequiredArgsConstructor;
@@ -46,4 +47,10 @@ public class BlogPostController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Void> update(@PathVariable long id, @RequestBody BlogPostUpdateDTO dataPostUpdate) {
+        service.update(dataPostUpdate, id);
+
+        return ResponseEntity.noContent().build();
+    }
 }

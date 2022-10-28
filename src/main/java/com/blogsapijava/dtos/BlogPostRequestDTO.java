@@ -8,9 +8,11 @@ import java.util.List;
 
 @Getter @Setter
 public class BlogPostRequestDTO {
+    @NotBlank
     @Size(min = 3, max = 100)
     private String title;
 
+    @NotBlank
     @Size(min = 10, max = 255)
     private String content;
 
