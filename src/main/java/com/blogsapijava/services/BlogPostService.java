@@ -4,14 +4,15 @@ import com.blogsapijava.dtos.BlogPostRequestDTO;
 import com.blogsapijava.exceptions.NotFoundException;
 import com.blogsapijava.interfaces.IBlogPostService;
 import com.blogsapijava.models.BlogPost;
+import com.blogsapijava.models.Category;
 import com.blogsapijava.models.User;
 import com.blogsapijava.repositories.BlogPostRepo;
+import com.blogsapijava.repositories.CategoryRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ public class BlogPostService implements IBlogPostService {
 
     private final BlogPostRepo repo;
     private final UserService userService;
+    private final CategoryRepo categoryrepo;
 
     @Override
     public BlogPost findById(long id) {
@@ -38,6 +40,10 @@ public class BlogPostService implements IBlogPostService {
         newPost.setPublished(LocalDateTime.now());
         newPost.setUpdated(LocalDateTime.now());
         newPost.setUser(user);
+        List<Category> categories = categoryrepo.findAllById(post.getCategories());
+
+        Set<Category> categoriesSet = new HashSet<>(categories);
+        newPost.setCategories(categoriesSet);
 
         return repo.save(newPost);
     }

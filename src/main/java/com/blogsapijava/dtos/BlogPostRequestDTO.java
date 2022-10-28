@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Getter @Setter
 public class BlogPostRequestDTO {
@@ -16,4 +17,8 @@ public class BlogPostRequestDTO {
     @NotNull
     @Min(0)
     private long userId;
+
+    @NotEmpty
+    @NotNull
+    private List<Long> categories;
 }

@@ -37,6 +37,7 @@ public class BlogPost {
     private User user;
 
     @ManyToMany
+    @JsonIgnoreProperties("blogPosts")
     @JoinTable(
             name = "PostCategories",
             joinColumns = @JoinColumn(name = "blogPostId", referencedColumnName = "id"),
